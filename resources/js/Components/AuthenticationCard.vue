@@ -16,3 +16,6 @@ import Notyf from '@/Components/Common/Notyf.vue';
         </div>
     </div>
 </template>
+<style lang="scss">
+    @import "./../../sass/app.scss";
+</style>
