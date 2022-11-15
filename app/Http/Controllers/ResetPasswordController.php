@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ForgotPassword;
 use App\Http\Requests\InitPassChange;
 use App\Repositories\User\UserInterface;
-use App\Http\Requests\ForgotPassword;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ResetPasswordController extends BaseController
 {
     private $user;
+
     public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -56,20 +58,22 @@ class ResetPasswordController extends BaseController
     {
         if (! $this->user->getUserByToken($id)) {
             $this->setFlash(__('期限切れのリンク'), 'error');
+
             return Inertia::render('Auth/ForgotPassword', [
                 'data' => [
                     'title' => 'パスワード再設定期限外',
-                    'request' => $request->all()
+                    'request' => $request->all(),
                 ],
             ]);
         }
-        return Inertia::render('Auth/ResetPassword', [
+
+        return Inertia::render('Auth/ResetPassword', parent::mergeSession([
             'data' => [
                 'title' => 'パスワード再設定',
                 'request' => $request->all(),
-                'urlUpdate' => route('init-password.update', $id)
+                'urlUpdate' => route('init-password.update', $id),
             ],
-        ]);
+        ]));
     }
 
     /**
@@ -99,6 +103,7 @@ class ResetPasswordController extends BaseController
         if (! $this->user->updatePasswordByToken($request, $id)) {
             $this->setFlash(__('期限切れのリンク'), 'error');
         }
+
         return redirect()->route('login.index');
     }
 

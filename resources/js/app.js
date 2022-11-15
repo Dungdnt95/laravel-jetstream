@@ -11,18 +11,6 @@ configure({
 });
 const app = createApp({});
 app.use(CoreuiVue);
-// import { InertiaApp } from '@inertiajs/inertia-vue';
-// import { InertiaForm } from 'laravel-jetstream';
-// import PortalVue from 'portal-vue';
-
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css';
-
-Vue.mixin({ methods: { route } });
-// Vue.use(InertiaApp);
-// Vue.use(InertiaForm);
-// Vue.use(PortalVue);
-Vue.use(Vuetify)
 defineRule('password_rule', value => {
     return /^[A-Za-z0-9]*$/i.test(value);
 });
@@ -44,7 +32,8 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
-
+import Notyf from "./components/common/notyf.vue";
+app.component("notyf", Notyf);
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
@@ -53,7 +42,7 @@ createInertiaApp({
     setup({ el, app, props, plugin }) {
         return createApp({ render: () => h(app, props) })
             .use(plugin)
-            .use(ZiggyVue, Ziggy)
+            .use(ZiggyVue, Ziggy, Notyf)
             .mount(el);
     },
 });

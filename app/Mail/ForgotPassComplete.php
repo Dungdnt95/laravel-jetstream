@@ -9,7 +9,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ForgotPassComplete extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new message instance.
@@ -17,6 +18,7 @@ class ForgotPassComplete extends Mailable
      * @return void
      */
     protected $mailData;
+
     public function __construct($mailData)
     {
         $this->mailData = $mailData;
@@ -32,7 +34,7 @@ class ForgotPassComplete extends Mailable
         return $this->subject('パスワード変更完了')
             ->view('mails.forgotPasswordComplete')
             ->with([
-                'data' => $this->mailData
+                'data' => $this->mailData,
             ]);
     }
 }

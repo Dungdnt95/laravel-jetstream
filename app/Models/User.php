@@ -10,10 +10,10 @@ use Kyslik\ColumnSortable\Sortable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $email
- * @property boolean $type
+ * @property bool $type
  * @property string $email_verified_at
  * @property string $password
  * @property string $reset_password_token
@@ -26,7 +26,10 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, SoftDeletes, Sortable;
+    use HasFactory;
+    use SoftDeletes;
+    use Sortable;
+
     /**
      * The "type" of the auto-incrementing ID.
      *

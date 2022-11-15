@@ -9,7 +9,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ForgotPassword extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new message instance.
@@ -17,6 +18,7 @@ class ForgotPassword extends Mailable
      * @return void
      */
     protected $mailData;
+
     public function __construct($mailData)
     {
         $this->mailData = $mailData;
@@ -32,7 +34,7 @@ class ForgotPassword extends Mailable
         return $this->subject('パスワード再設定のお願い')
             ->view('mails.forgotPassword')
             ->with([
-                'data' => $this->mailData['data']
+                'data' => $this->mailData['data'],
             ]);
     }
 }

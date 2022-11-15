@@ -1,8 +1,11 @@
 <script setup>
 import SpinBeforeLoaded from '@/Components/Common/SpinBeforeLoaded.vue';
+import Notyf from '@/Components/Common/Notyf.vue';
 </script>
 <template>
     <SpinBeforeLoaded />
+    <Notyf :data="$page.props.sessionAlert" />
+    <slot name="notyf" />
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
         <div>
             <slot name="logo" />

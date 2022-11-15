@@ -7,6 +7,7 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import Notyf from '@/Components/Common/Notyf.vue';
 import {
   Form as VeeForm,
   Field,
@@ -65,10 +66,9 @@ configure({
   <Head :title="data.title" />
 
   <AuthenticationCard>
-      <v-alert
-  elevation="24"
-  type="success"
-></v-alert>
+      <template #notyf>
+        <Notyf :data="sessionAlert" />
+        </template>
     <template #logo>
       <AuthenticationCardLogo />
     </template>
@@ -152,6 +152,9 @@ export default {
     data: {
       type: Object,
     },
+    sessionAlert: {
+        type: Object,
+    }
   },
   components: {
     VeeForm,

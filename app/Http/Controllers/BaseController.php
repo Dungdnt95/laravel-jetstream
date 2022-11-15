@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\Models\OperationLog;
 use App\Enums\OperationType;
+use App\Models\OperationLog;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
-use Log;
 use Illuminate\Routing\Route;
+use Log;
 
 class BaseController extends Controller
 {
@@ -21,16 +21,18 @@ class BaseController extends Controller
             'urlRedirect' => $urlRedirect,
         ]);
     }
+
     public static function newListLimit($query)
     {
         $newSizeLimit = PAGE_SIZE_DEFAULT;
         $arrPageSize = PAGE_SIZE_LIMIT;
         if (isset($query['limit_page'])) {
-            $newSizeLimit = (($query['limit_page'] === '') || !in_array($query['limit_page'], $arrPageSize)) ? $newSizeLimit : $query['limit_page'];
+            $newSizeLimit = (($query['limit_page'] === '') || ! in_array($query['limit_page'], $arrPageSize)) ? $newSizeLimit : $query['limit_page'];
         }
-        if (((isset($query['limit_page']))) && (!empty($query->query('limit_page')))) {
-            $newSizeLimit = (!in_array($query->query('limit_page'), $arrPageSize)) ? $newSizeLimit : $query->query('limit_page');
+        if (((isset($query['limit_page']))) && (! empty($query->query('limit_page')))) {
+            $newSizeLimit = (! in_array($query->query('limit_page'), $arrPageSize)) ? $newSizeLimit : $query->query('limit_page');
         }
+
         return $newSizeLimit;
     }
 
@@ -47,11 +49,12 @@ class BaseController extends Controller
         // }
         // return $newSizeLimit;
     }
+
     /**
      * [escapeLikeSentence description]
      * @param  [type]  $str    :search conditions
-     * @param  boolean $before : add % before
-     * @param  boolean $after  : add % after
+     * @param  bool $before : add % before
+     * @param  bool $after  : add % after
      * @return [type]          [description]
      */
     public function escapeLikeSentence($column, $str, $before = true, $after = true)
@@ -59,7 +62,8 @@ class BaseController extends Controller
         $result = str_replace('\\', '[\]', $this->mbTrim($str)); // \ -> \\
         $result = str_replace('%', '\%', $result); // % -> \%
         $result = str_replace('_', '\_', $result); // _ -> \_
-        return [[$column, 'LIKE', (($before) ? '%' : '') . $result . (($after) ? '%' : '')]];
+
+        return [[$column, 'LIKE', (($before) ? '%' : '').$result.(($after) ? '%' : '')]];
     }
 
     public function handleSearchQuery($str, $before = true, $after = true)
@@ -67,7 +71,8 @@ class BaseController extends Controller
         $result = str_replace('\\', '[\]', $this->mbTrim($str)); // \ -> \\
         $result = str_replace('%', '\%', $result); // % -> \%
         $result = str_replace('_', '\_', $result); // _ -> \_
-        return (($before) ? '%' : '') . $result . (($after) ? '%' : '');
+
+        return (($before) ? '%' : '').$result.(($after) ? '%' : '');
     }
 
     public function checkPaginatorList($query)
@@ -75,6 +80,7 @@ class BaseController extends Controller
         if ($query->currentPage() > $query->lastPage()) {
             return true;
         }
+
         return false;
     }
 
@@ -82,6 +88,7 @@ class BaseController extends Controller
     {
         $whitespace = '[\s\0\x0b\p{Zs}\p{Zl}\p{Zp}]';
         $ret = preg_replace(sprintf('/(^%s+|%s+$)/u', $whitespace, $whitespace), '', $string);
+
         return $ret;
     }
 
@@ -92,9 +99,7 @@ class BaseController extends Controller
      *
      * @param  string  空白文字を取り除く文字列
      * @return  string
-     *
      */
-
     public function checkRfidCode($rfidCode)
     {
         return preg_match('/^[a-zA-Z0-9][a-zA-Z0-9]*$/i', $rfidCode);
@@ -105,9 +110,10 @@ class BaseController extends Controller
         $ret = 0;
         if ($column == '') {
             $ret = 1; // Blank OR NULL
-        } elseif (!$this->checkRfidCode($column)) {
+        } elseif (! $this->checkRfidCode($column)) {
             $ret = 2; // Error formart
         }
+
         return $ret;
     }
 
@@ -120,6 +126,7 @@ class BaseController extends Controller
             'message' => $message,
         ]);
     }
+
     public function logError($request, $message = '')
     {
         Log::channel('access_log')->error([
@@ -129,6 +136,7 @@ class BaseController extends Controller
             'message' => $message,
         ]);
     }
+
     public function logWarning($request, $message = '')
     {
         Log::channel('access_log')->warning([
@@ -141,7 +149,7 @@ class BaseController extends Controller
 
     public function convertShijis($text)
     {
-        return mb_convert_encoding($text, "SJIS", "UTF-8");
+        return mb_convert_encoding($text, 'SJIS', 'UTF-8');
     }
 
     public function saveOperationLog($request, $operationType = OperationType::INSERT)
@@ -168,18 +176,35 @@ class BaseController extends Controller
     {
         return $this->removeBomUtf8($this->multibyteTrim(($line[$column] != 'None' && $line[$column] != '') ? $line[$column] : ''));
     }
+
     public function removeBomUtf8($s)
     {
-        if (substr($s, 0, 3) == chr(hexdec('EF')) . chr(hexdec('BB')) . chr(hexdec('BF'))) {
+        if (substr($s, 0, 3) == chr(hexdec('EF')).chr(hexdec('BB')).chr(hexdec('BF'))) {
             return substr($s, 3);
         }
+
         return $s;
     }
-    function multibyteTrim($str)
+
+    public function multibyteTrim($str)
     {
-        if (!function_exists("mb_trim") || !extension_loaded("mbstring")) {
-            return preg_replace("/(^\s+)|(\s+$)/u", "", $str);
+        if (! function_exists('mb_trim') || ! extension_loaded('mbstring')) {
+            return preg_replace("/(^\s+)|(\s+$)/u", '', $str);
         }
+
         return mb_trim($str);
+    }
+
+    public function mergeSession($data)
+    {
+        $dataSession = '';
+        if (session()->get('Message.flash')) {
+            $dataSession = session()->get('Message.flash')[0];
+            session()->forget('Message.flash');
+        }
+
+        return array_merge($data, [
+            'sessionAlert' => $dataSession,
+        ]);
     }
 }

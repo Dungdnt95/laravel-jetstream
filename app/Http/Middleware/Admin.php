@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\RoleType;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Factory;
-use App\Enums\RoleType;
 
 class Admin
 {
@@ -26,6 +26,7 @@ class Admin
         if (! Auth::guard('admin')->check() || Auth::guard('admin')->user()->type != RoleType::ADMIN) {
             return redirect(route('login.index', ['url_redirect' => url()->full()]));
         }
+
         return $next($request);
     }
 }

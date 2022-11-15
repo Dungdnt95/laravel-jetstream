@@ -12,10 +12,12 @@ use Inertia\Inertia;
 class LoginController extends BaseController
 {
     private $user;
+
     public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,11 +28,12 @@ class LoginController extends BaseController
         if (Auth::guard('admin')->check()) {
             return redirect(route('admin.dashboard.index'));
         }
+
         return Inertia::render('Auth/Login', [
             'data' => [
                 'title' => 'ログイン',
                 'request' => $request->all(),
-                'urlForgot' => route('forgot-password.index')
+                'urlForgot' => route('forgot-password.index'),
             ],
         ]);
     }
@@ -55,17 +58,20 @@ class LoginController extends BaseController
     {
         $credentials = $request->only('email', 'password');
         if (Auth::guard('admin')->attempt($credentials, $request->remember_me ?? false)) {
-            if (!$this->user->saveLoginHistory()) {
+            if (! $this->user->saveLoginHistory()) {
                 Auth::guard('admin')->logout();
+
                 return redirect('/');
             }
+
             return redirect($request->url_redirect ? $request->url_redirect : route('admin.dashboard.index'));
         }
+
         return Inertia::render('Auth/Login', [
             'data' => [
                 'title' => 'ログイン',
                 'message' => 'ログインIDとパスワードが一致しません。',
-                'request' => $request->all()
+                'request' => $request->all(),
             ],
         ]);
     }
@@ -73,6 +79,7 @@ class LoginController extends BaseController
     public function logout()
     {
         Auth::guard('admin')->logout();
+
         return redirect(route('login.index'));
     }
 }

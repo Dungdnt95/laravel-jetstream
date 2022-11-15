@@ -9,6 +9,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import SpinBeforeLoaded from '@/Components/Common/SpinBeforeLoaded.vue';
+import Notyf from '@/Components/Common/Notyf.vue';
 
 defineProps({
     title: String,
@@ -33,6 +34,7 @@ const logout = () => {
     <div>
         <Head :title="title" />
         <SpinBeforeLoaded />
+        <Notyf :data="$page.props.sessionAlert" />
         <Banner />
 
         <div class="min-h-screen bg-gray-100">

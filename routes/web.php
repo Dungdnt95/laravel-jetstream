@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ Route::get('logout', [LoginController::class, 'logout']);
 Route::group([
     'middleware' => ['assign.guard:admin', 'admin'],
     'prefix' => 'admin',
-    'as' => 'admin.'
+    'as' => 'admin.',
 ], function () {
     Route::resource('dashboard', DashboardController::class);
     // ['as' => 'admin']

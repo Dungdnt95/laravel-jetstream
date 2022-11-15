@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\User\UserInterface;
 use App\Http\Requests\ForgotPassword;
-use Inertia\Inertia;
+use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ForgotPasswordController extends BaseController
 {
     private $user;
+
     public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +26,7 @@ class ForgotPasswordController extends BaseController
         return Inertia::render('Auth/ForgotPassword', [
             'data' => [
                 'title' => 'パスワード再発行申請',
-                'request' => $request->all()
+                'request' => $request->all(),
             ],
         ]);
     }
@@ -37,17 +39,19 @@ class ForgotPasswordController extends BaseController
      */
     public function store(ForgotPassword $request)
     {
-        if (!$this->user->getUserByEmail($request)) {
+        $this->setFlash(__('メールを確認してパスワードをリセットしてください'));
+        if (! $this->user->getUserByEmail($request)) {
             $this->setFlash(__('メールでユーザーを見つけることができません'), 'error');
         }
-        if (!$this->user->forgotPassword($request)) {
+        if (! $this->user->forgotPassword($request)) {
             $this->setFlash(__('メールでユーザーを見つけることができません'), 'error');
         }
-        return Inertia::render('Auth/ForgotPassword', [
+
+        return Inertia::render('Auth/ForgotPassword', parent::mergeSession([
             'data' => [
-                'title' => 'パスワード再発行申請',
-                'request' => $request->all()
+                'title' => 'パスワード再発行申請1',
+                'request' => $request->all(),
             ],
-        ]);
+        ]));
     }
 }
