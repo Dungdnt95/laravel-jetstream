@@ -66,9 +66,6 @@ configure({
   <Head :title="data.title" />
 
   <AuthenticationCard>
-      <template #notyf>
-        <Notyf :data="sessionAlert" />
-        </template>
     <template #logo>
       <AuthenticationCardLogo />
     </template>
