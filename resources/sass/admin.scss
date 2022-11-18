@@ -7,9 +7,6 @@ $enable-rtl: true;
 // Import styles
 @import "@coreui/coreui/scss/coreui";
 
-// Import Chart.js Tooltips
-@import "@coreui/chartjs/scss/tooltips";
-
 @import 'admin/base/reset';
 @import 'admin/base/loader';
 @import 'admin/base/base';
