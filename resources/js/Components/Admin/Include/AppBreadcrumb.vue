@@ -1,13 +1,19 @@
 <template>
   <CBreadcrumb class="d-md-down-none me-auto mb-0">
-    <!-- <CBreadcrumbItem
-      v-for="item in breadcrumbs"
+    <CBreadcrumbItem
+      href="/"
+      :active="true"
+    >
+      ホーム
+    </CBreadcrumbItem>
+    <CBreadcrumbItem
+      v-for="item in $page.props.breadcrumbs ?? []"
       :key="item"
       :href="item.active ? '' : item.path"
       :active="item.active"
     >
       {{ item.name }}
-    </CBreadcrumbItem> -->
+    </CBreadcrumbItem>
   </CBreadcrumb>
 </template>
 

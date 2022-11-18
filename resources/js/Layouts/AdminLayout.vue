@@ -1,8 +1,8 @@
 <script setup>
 import { CContainer } from '@coreui/vue'
-import AppFooter from '@/components/Admin/Include/AppFooter.vue'
-import AppHeader from '@/components/Admin/Include/AppHeader.vue'
-import AppSidebar from '@/components/Admin/Include/AppSidebar.vue'
+import adminFooter from '@/Components/Admin/Include/AppFooter.vue'
+import AppHeader from '@/Components/Admin/Include/AppHeader.vue'
+import AppSidebar from '@/Components/Admin/Include/AppSidebar.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import SpinBeforeLoaded from '@/Components/Common/SpinBeforeLoaded.vue'
 import Notyf from '@/Components/Common/Notyf.vue'
@@ -21,7 +21,7 @@ import Notyf from '@/Components/Common/Notyf.vue'
           <slot name="content" />
         </CContainer>
       </div>
-      <AppFooter />
+      <adminFooter />
     </div>
   </div>
 </template>
