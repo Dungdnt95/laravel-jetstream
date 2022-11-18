@@ -1,66 +1,63 @@
 <script setup>
-import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import AuthenticationCard from "@/Components/AuthenticationCard.vue";
-import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
-import Checkbox from "@/Components/Checkbox.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
-import Notyf from '@/Components/Common/Notyf.vue';
+import { Head, Link } from '@inertiajs/inertia-vue3'
+import AuthenticationCard from '@/Components/AuthenticationCard.vue'
+import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue'
+import Checkbox from '@/Components/Checkbox.vue'
+import InputLabel from '@/Components/InputLabel.vue'
+import PrimaryButton from '@/Components/PrimaryButton.vue'
 import {
   Form as VeeForm,
   Field,
   ErrorMessage,
   defineRule,
   configure,
-} from "vee-validate";
-import { localize } from "@vee-validate/i18n";
-import * as rules from "@vee-validate/rules";
-import $ from "jquery";
+} from 'vee-validate'
+import { localize } from '@vee-validate/i18n'
+import * as rules from '@vee-validate/rules'
+import $ from 'jquery'
 Object.keys(rules).forEach((rule) => {
-  if (rule != "default") {
-    defineRule(rule, rules[rule]);
+  if (rule != 'default') {
+    defineRule(rule, rules[rule])
   }
-});
+})
 const onInvalidSubmit = ({ values, errors, results }) => {
-  let firstInputError = Object.entries(errors)[0][0];
-  let ele = $('[name="' + firstInputError + '"]');
+  let firstInputError = Object.entries(errors)[0][0]
+  let ele = $('[name="' + firstInputError + '"]')
   if (
-    $('[name="' + firstInputError + '"]').hasClass("hidden") ||
-    $('[name="' + firstInputError + '"]').attr("type") == "hidden"
+    $('[name="' + firstInputError + '"]').hasClass('hidden') ||
+    $('[name="' + firstInputError + '"]').attr('type') == 'hidden'
   ) {
-    ele = $('[name="' + firstInputError + '"]').closest("div");
+    ele = $('[name="' + firstInputError + '"]').closest('div')
   }
-  ele.focus();
-  $("html, body").animate(
+  ele.focus()
+  $('html, body').animate(
     {
-      scrollTop: ele.offset().top - 150 + "px",
+      scrollTop: ele.offset().top - 150 + 'px',
     },
-    500
-  );
-};
+    500,
+  )
+}
 let messError = {
   en: {
     fields: {
       email: {
-        required: "メールアドレスを入力してください。",
-        max: "メールアドレスは255文字を超えてはなりません。",
-        email: "ログインID形式が正しくありません。",
+        required: 'メールアドレスを入力してください。',
+        max: 'メールアドレスは255文字を超えてはなりません。',
+        email: 'ログインID形式が正しくありません。',
       },
       password: {
-        required: "パスワードを入力してください。",
-        max: "パスワードは８文字～１６文字入力してください。",
-        min: "パスワードは８文字～１６文字入力してください。",
+        required: 'パスワードを入力してください。',
+        max: 'パスワードは８文字～１６文字入力してください。',
+        min: 'パスワードは８文字～１６文字入力してください。',
         password_rule:
-          "パスワードは半角英数字で、大文字、小文字、数字で入力してください。",
+          'パスワードは半角英数字で、大文字、小文字、数字で入力してください。',
       },
     },
   },
-};
+}
 configure({
   generateMessage: localize(messError),
-});
+})
 </script>
 <template>
   <Head :title="data.title" />
@@ -120,7 +117,7 @@ configure({
               >次回から自動的にログイン</span
             >
           </label>
-            <label class="error" v-if="data.message">{{data.message}}</label>
+          <label class="error" v-if="data.message">{{ data.message }}</label>
         </div>
 
         <div class="flex items-center justify-end mt-4">
@@ -142,7 +139,7 @@ export default {
     return {
       model: this.data.request,
       csrfToken: Laravel.csrfToken,
-    };
+    }
   },
   mounted() {},
   props: {
@@ -150,8 +147,8 @@ export default {
       type: Object,
     },
     sessionAlert: {
-        type: Object,
-    }
+      type: Object,
+    },
   },
   components: {
     VeeForm,
@@ -160,9 +157,9 @@ export default {
   },
   methods: {
     onSubmit() {
-      $(".loading").removeClass("hidden");
-      this.$refs.formData.submit();
+      $('.loading').removeClass('hidden')
+      this.$refs.formData.submit()
     },
   },
-};
+}
 </script>

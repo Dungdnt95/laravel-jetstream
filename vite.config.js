@@ -3,18 +3,18 @@ import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-    plugins: [
-        laravel({
-            input: ['resources/js/guest.js', 'resources/js/admin.js'],
-            refresh: true
-        }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false
-                }
-            }
-        })
-    ]
+  plugins: [
+    laravel({
+      input: ['resources/js/guest.js', 'resources/js/admin.js'],
+      refresh: true,
+    }),
+    vue({
+      template: {
+        transformAssetUrls: {
+          base: null,
+          includeAbsolute: false,
+        },
+      },
+    }),
+  ],
 })
