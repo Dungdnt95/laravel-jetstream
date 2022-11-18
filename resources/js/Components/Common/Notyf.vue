@@ -1,46 +1,45 @@
 <template>
-    <div>
-    </div>
+  <div></div>
 </template>
 <script>
-import { Notyf } from 'notyf';
-import 'notyf/notyf.min.css';
+import { Notyf } from 'notyf'
+import 'notyf/notyf.min.css'
 
 export default {
   mounted() {},
-  created: function() {
+  created: function () {
     if (this.data) {
-      this.showNotification();
+      this.showNotification()
     }
   },
   props: ['data'],
-  mounted() {},
   methods: {
     showNotification() {
       const notyf = new Notyf({
         duration: 6000,
         position: {
-            x: 'center',
-            y: 'bottom',
+          x: 'center',
+          y: 'bottom',
         },
-        types: [{
+        types: [
+          {
             type: 'error',
             duration: 8000,
-            dismissible: true
-        }]
-      });
+            dismissible: true,
+          },
+        ],
+      })
 
       if (this.data.mode === 'error') {
-          return notyf.error(this.data.message);
+        return notyf.error(this.data.message)
       }
 
       if (this.data.mode === 'warning') {
-          return notyf.warning(this.data.message);
+        return notyf.warning(this.data.message)
       }
 
-      return notyf.success(this.data.message);
+      return notyf.success(this.data.message)
     },
-  }
-};
-
+  },
+}
 </script>

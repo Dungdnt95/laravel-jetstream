@@ -17,9 +17,10 @@ class DashboardController extends BaseController
     {
         return Inertia::render('Admin/Dashboard/Index', [
             'data' => [
-                'title' => 'ログイン',
+                'title' => 'ホーム',
                 'urlForgot' => route('forgot-password.index'),
             ],
+
         ]);
     }
 

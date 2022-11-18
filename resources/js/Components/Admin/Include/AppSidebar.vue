@@ -23,7 +23,14 @@
         :height="35"
       />
     </CSidebarBrand>
-    <!-- <AppSidebarNav /> -->
+    <ul class="sidebar-nav">
+      <li class="nav-item">
+        <a class="active nav-link" aria-current="page" href="#/dashboard">
+          <i class="nav-icon fa fa-home" aria-hidden="true"></i>
+          ホーム</a
+        >
+      </li>
+    </ul>
     <CSidebarToggler
       class="d-none d-lg-flex"
       @click="$store.commit('toggleUnfoldable')"

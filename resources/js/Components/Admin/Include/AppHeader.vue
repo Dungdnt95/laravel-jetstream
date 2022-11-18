@@ -11,7 +11,7 @@ import AppHeaderDropdownAccnt from '@/components/Admin/Include/AppHeaderDropdown
       <CHeaderBrand class="mx-auto d-lg-none" to="/">
         <CIcon :icon="logo" height="48" alt="Logo" />
       </CHeaderBrand>
-      <CHeaderNav class="d-none d-md-flex me-auto">
+      <!-- <CHeaderNav class="d-none d-md-flex me-auto">
         <CNavItem>
           <CNavLink href="/dashboard"> Dashboard </CNavLink>
         </CNavItem>
@@ -21,7 +21,7 @@ import AppHeaderDropdownAccnt from '@/components/Admin/Include/AppHeaderDropdown
         <CNavItem>
           <CNavLink href="#">Settings</CNavLink>
         </CNavItem>
-      </CHeaderNav>
+      </CHeaderNav> -->
       <CHeaderNav>
         <CNavItem>
           <CNavLink href="#">
