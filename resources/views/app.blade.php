@@ -21,8 +21,11 @@
         ) !!};
     </script>
     @routes
-    @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"]) --}}
+    @if (isset($isAdmin) && $isAdmin)
+        @vite(['resources/js/admin.js', "resources/js/Pages/{$page['component']}.vue"])
+    @else
+        @vite(['resources/js/guest.js', "resources/js/Pages/{$page['component']}.vue"])
+    @endif
     @inertiaHead
 </head>
 

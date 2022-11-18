@@ -167,31 +167,31 @@ textarea {
 @font-face {
   font-family: 'Noto Sans JP';
   font-weight: 400;
-  src: url('/fonts/NotoSansJP-Regular.otf');
+  src: url('@/../sass/fonts/NotoSansJP-Regular.otf');
 }
 
 @font-face {
   font-family: 'Noto Sans JP';
   font-weight: 500;
-  src: url('/fonts/NotoSansJP-Medium.otf');
+  src: url('@/../sass/fonts/NotoSansJP-Medium.otf');
 }
 
 @font-face {
   font-family: 'Noto Sans JP';
   font-weight: 700;
-  src: url('/fonts/NotoSansJP-Bold.otf');
+  src: url('@/../sass/fonts/NotoSansJP-Bold.otf');
 }
 
 @font-face {
   font-family: Jost;
   font-weight: 400;
-  src: url('/fonts/Jost-Regular.ttf');
+  src: url('@/../sass/fonts/Jost-Regular.ttf');
 }
 
 @font-face {
   font-family: Jost;
   font-weight: 500;
-  src: url('/fonts/Jost-Medium.ttf');
+  src: url('@/../sass/fonts/Jost-Medium.ttf');
 }
 
 .error-message {

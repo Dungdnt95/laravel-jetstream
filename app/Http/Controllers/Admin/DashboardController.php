@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class DashboardController extends BaseController
 {
@@ -14,8 +15,12 @@ class DashboardController extends BaseController
      */
     public function index()
     {
-        dd(1);
-        //
+        return Inertia::render('Admin/Dashboard/Index', [
+            'data' => [
+                'title' => 'ログイン',
+                'urlForgot' => route('forgot-password.index'),
+            ],
+        ]);
     }
 
     /**

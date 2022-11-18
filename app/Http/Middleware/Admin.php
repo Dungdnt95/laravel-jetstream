@@ -26,6 +26,7 @@ class Admin
         if (! Auth::guard('admin')->check() || Auth::guard('admin')->user()->type != RoleType::ADMIN) {
             return redirect(route('login.index', ['url_redirect' => url()->full()]));
         }
+        view()->share('isAdmin', Auth::guard('admin')->user()->type == RoleType::ADMIN);
 
         return $next($request);
     }
