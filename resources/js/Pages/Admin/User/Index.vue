@@ -82,7 +82,6 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
 </template>
 <script>
 export default {
-  setup() {},
   data() {
     return {}
   },

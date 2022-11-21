@@ -49,7 +49,7 @@ class ForgotPasswordController extends BaseController
 
         return Inertia::render('Auth/ForgotPassword', parent::mergeSession([
             'data' => [
-                'title' => 'パスワード再発行申請1',
+                'title' => 'パスワード再発行申請',
                 'request' => $request->all(),
             ],
         ]));

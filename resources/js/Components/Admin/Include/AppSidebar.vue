@@ -1,7 +1,4 @@
 
-<script setup>
-import { Link } from '@inertiajs/inertia-vue3'
-</script>
 <template>
   <CSidebar
     position="fixed"
@@ -55,6 +52,7 @@ import { Link } from '@inertiajs/inertia-vue3'
 </template>
 
 <script>
+import { Link } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 // import { AppSidebarNav } from './AppSidebarNav'
@@ -63,7 +61,7 @@ import { sygnet } from '@/assets/brand/sygnet'
 export default {
   name: 'AppSidebar',
   components: {
-    // AppSidebarNav,
+    Link,
   },
   setup() {
     const store = useStore()
