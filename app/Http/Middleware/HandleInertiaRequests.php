@@ -41,9 +41,12 @@ class HandleInertiaRequests extends Middleware
             $dataSession = session()->get('Message.flash')[0];
             session()->forget('Message.flash');
         }
+        $routeName = \Route::currentRouteName();
 
         return array_merge(parent::share($request), [
             'sessionAlert' => $dataSession,
+            'dashboardActive' => in_array($routeName, ['admin.dashboard.index']),
+            'userActive' => in_array($routeName, ['admin.user.index']),
         ]);
     }
 }

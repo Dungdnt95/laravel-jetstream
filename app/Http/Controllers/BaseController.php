@@ -75,15 +75,6 @@ class BaseController extends Controller
         return (($before) ? '%' : '').$result.(($after) ? '%' : '');
     }
 
-    public function checkPaginatorList($query)
-    {
-        if ($query->currentPage() > $query->lastPage()) {
-            return true;
-        }
-
-        return false;
-    }
-
     public function mbTrim($string)
     {
         $whitespace = '[\s\0\x0b\p{Zs}\p{Zl}\p{Zp}]';
@@ -206,5 +197,45 @@ class BaseController extends Controller
         return array_merge($data, [
             'sessionAlert' => $dataSession,
         ]);
+    }
+
+    public function sortLinks($routeName, $data, $request)
+    {
+        $link = [];
+        $dataParam = $request->all();
+        unset($dataParam['sort']);
+        unset($dataParam['direction']);
+        foreach ($data as $key => $value) {
+            $dataParam['sort'] = $value['key'];
+            $dataParam['direction'] = $request->sort != $value['key'] ? 'asc' : ($request->direction == 'asc' ? 'desc' : 'asc');
+            $link[] = [
+                'link' => route($routeName, $dataParam),
+                'name' => $value['name'],
+                'iconDirection' => $request->sort != $value['key'] ? 'fa-sort' : ($request->direction == 'asc' ? 'fa-sort-asc' : 'fa-sort-desc'),
+            ];
+        }
+
+        return $link;
+    }
+
+    public function paginator($data)
+    {
+        $url = [0 => $data->url(1)];
+        foreach (range(1, $data->lastPage()) as $key => $i) {
+            $url[$key] = $data->url($i);
+        }
+
+        return [
+            'firstItem' => $data->firstItem(),
+            'end' => $data->perPage() * ($data->currentPage() - 1) + $data->count(),
+            'total' => $data->total(),
+            'onFirstPage' => $data->onFirstPage(),
+            'previousPageUrl' => $data->previousPageUrl(),
+            'lastPage' => $data->lastPage(),
+            'hasMorePages' => $data->hasMorePages(),
+            'currentPage' => $data->currentPage(),
+            'nextPageUrl' => $data->nextPageUrl(),
+            'url' => $url,
+        ];
     }
 }

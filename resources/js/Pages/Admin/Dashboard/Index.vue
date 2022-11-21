@@ -4,16 +4,14 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
 </script>
 <template>
   <Head :title="data.title" />
-
   <AdminLayout>
-    <template #content> 11212 </template>
+    <template #content> </template>
   </AdminLayout>
 </template>
 <script>
 export default {
   data() {
     return {
-      model: this.data.request,
       csrfToken: Laravel.csrfToken,
     }
   },
@@ -26,10 +24,6 @@ export default {
   components: {
   },
   methods: {
-    onSubmit() {
-      $('.loading').removeClass('hidden')
-      this.$refs.formData.submit()
-    },
   },
 }
 </script>

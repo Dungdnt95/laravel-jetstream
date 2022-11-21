@@ -2,17 +2,18 @@
 
 namespace App\Repositories\User;
 
-use App\Http\Controllers\BaseController;
+use App\Components\CommonComponent;
 use App\Mail\ForgotPassComplete;
 use App\Mail\ForgotPassword;
 use App\Models\User;
 use App\Repositories\User\UserInterface;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-class UserRepository extends BaseController implements UserInterface
+class UserRepository implements UserInterface
 {
     private User $user;
 
@@ -23,27 +24,62 @@ class UserRepository extends BaseController implements UserInterface
 
     public function get($request)
     {
-        // TODO: Implement get() method.
-    }
+        $newSizeLimit = CommonComponent::newListLimit($request);
+        $userBuilder = $this->user;
+        if (isset($request['free_word']) && $request['free_word'] != '') {
+            $userBuilder = $userBuilder->where(function ($q) use ($request) {
+                $q->orWhere($this->escapeLikeSentence('name', $request['free_word']));
+                $q->orWhere($this->escapeLikeSentence('email', $request['free_word']));
+            });
+        }
+        $users = $userBuilder->sortable(['updated_at' => 'desc'])->paginate($newSizeLimit);
+        if (CommonComponent::checkPaginatorList($users)) {
+            Paginator::currentPageResolver(function () {
+                return 1;
+            });
+            $users = $userBuilder->paginate($newSizeLimit);
+        }
 
-    public function getById($id)
-    {
-        // TODO: Implement getById() method.
+        return $users;
     }
 
     public function store($request)
     {
-        // TODO: Implement store() method.
+        $this->user->name = $request->name;
+        $this->user->email = $request->email;
+        $this->user->password = Hash::make($request->password);
+
+        return $this->user->save();
+    }
+
+    public function getById($id)
+    {
+        return $this->user->where('id', $id)->first();
     }
 
     public function update($request, $id)
     {
-        // TODO: Implement update() method.
+        $userInfo = $this->user->where('id', $id)->first();
+        if (! $userInfo) {
+            return false;
+        }
+        $userInfo->name = $request->name;
+        $userInfo->email = $request->email;
+        if ($request->password) {
+            $userInfo->password = Hash::make($request->password);
+        }
+
+        return $userInfo->save();
     }
 
     public function destroy($id)
     {
-        // TODO: Implement destroy() method.
+        $user = $this->user->where('id', $id)->first();
+        if (! $user) {
+            return false;
+        }
+
+        return $user->delete();
     }
 
     public function saveLoginHistory()
@@ -108,5 +144,15 @@ class UserRepository extends BaseController implements UserInterface
         Mail::to($account->email)->send(new ForgotPassComplete($mailContents));
 
         return true;
+    }
+
+    public function checkEmail($request)
+    {
+        return ! $this->user->where(function ($query) use ($request) {
+            if (isset($request['id'])) {
+                $query->where('id', '!=', $request['id']);
+            }
+            $query->where(['email' => $request['value']]);
+        })->exists();
     }
 }

@@ -5,3 +5,129 @@
 .nav-item .active {
   border-right: 3px solid red;
 }
+
+.form-label {
+  margin-bottom: 0px;
+}
+
+.w-100px {
+  width: 100px;
+}
+
+.dropdown-item {
+  i {
+    margin-right: 5px;
+  }
+}
+
+.swal2-title {
+  font-size: 25px;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #321fdb;
+}
+
+.table {
+  tbody {
+    tr {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.pull-right {
+  float: right;
+}
+
+.searchFrom {
+  padding-bottom: 10px;
+
+  form {
+    flex-wrap: nowrap;
+
+    button {
+      margin-left: 5px;
+    }
+
+    .btn-action-create {
+      margin-left: 5px;
+    }
+  }
+
+  .form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    .form-control {
+      display: inline-block;
+      width: auto;
+      vertical-align: middle;
+    }
+  }
+}
+
+.group-select-page {
+  margin-bottom: 5px;
+
+  .page-size-select {
+    display: initial;
+    width: auto;
+    margin-left: 5px;
+  }
+}
+
+.group-paginate {
+  .musashi-pagination {
+    display: flex;
+    justify-content: flex-end;
+
+    .total-item-pagination {
+      height: 36px;
+      padding-right: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .pagination {
+      display: flex;
+      list-style: none;
+    }
+  }
+}
+
+.lbl-input {
+  text-align: right;
+  padding-top: 10px;
+  margin-bottom: 0.5rem;
+}
+
+*[require]:after {
+  content: "※";
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  margin-left: 3px;
+}
+
+.error {
+  color: red;
+}
+
+.footer {
+  margin-top: 10px;
+}
+
+.breadcrumb-item:not(.active) {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.mr-5px {
+  margin-right: 5px;
+}

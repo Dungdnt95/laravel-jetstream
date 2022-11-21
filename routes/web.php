@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
@@ -33,7 +34,8 @@ Route::group([
     'as' => 'admin.',
 ], function () {
     Route::resource('dashboard', DashboardController::class);
-    // ['as' => 'admin']
+    Route::resource('user', UserController::class);
+    Route::post('check-email', [UserController::class, 'checkEmail'])->name('user.checkEmail');
 });
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

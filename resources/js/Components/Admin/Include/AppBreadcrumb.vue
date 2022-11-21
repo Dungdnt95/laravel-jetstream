@@ -1,52 +1,29 @@
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3'
+</script>
 <template>
   <CBreadcrumb class="d-md-down-none me-auto mb-0">
-    <CBreadcrumbItem
-      href="/"
-      :active="true"
-    >
-      ホーム
-    </CBreadcrumbItem>
-    <CBreadcrumbItem
-      v-for="item in $page.props.breadcrumbs ?? []"
-      :key="item"
-      :href="item.active ? '' : item.path"
-      :active="item.active"
+    <li class="breadcrumb-item active">
+      <Link href="/">ホーム</Link>
+    </li>
+    <li class="breadcrumb-item" :class="{active: item.url ? true : false}" v-for="(item, index) in $page.props.breadcrumbs"
+      :key="index">
+      <Link :href="item.url">{{ item.name }}</Link>
+    </li>
+    <!-- <CBreadcrumbItem
+      v-for="(item, index) in $page.props.breadcrumbs"
+      :key="index"
+      :href="item.url ? item.url : ''"
+      :active="item.url ? true : false"
     >
       {{ item.name }}
-    </CBreadcrumbItem>
+    </CBreadcrumbItem> -->
   </CBreadcrumb>
 </template>
 
 <script>
-// import { onMounted, ref } from 'vue'
-// import router from '@/router'
-
 export default {
   name: 'AppBreadcrumb',
-  setup() {
-    // const breadcrumbs = ref()
-
-    // const getBreadcrumbs = () => {
-    //   return router.currentRoute.value.matched.map((route) => {
-    //     return {
-    //       active: route.path === router.currentRoute.value.fullPath,
-    //       name: route.name,
-    //       path: `${router.options.history.base}${route.path}`,
-    //     }
-    //   })
-    // }
-
-    // router.afterEach(() => {
-    //   breadcrumbs.value = getBreadcrumbs()
-    // })
-
-    // onMounted(() => {
-    //   breadcrumbs.value = getBreadcrumbs()
-    // })
-
-    // return {
-    //   breadcrumbs,
-    // }
-  },
+  created() {},
 }
 </script>

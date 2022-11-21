@@ -7,7 +7,7 @@
       <CDropdownHeader component="h6" class="bg-light fw-semibold py-2">
         Account
       </CDropdownHeader>
-      <CDropdownItem>
+      <!-- <CDropdownItem>
         <CIcon icon="cil-bell" /> Updates
         <CBadge color="info" class="ms-auto">{{ itemsCount }}</CBadge>
       </CDropdownItem>
@@ -39,8 +39,8 @@
       <CDropdownDivider />
       <CDropdownItem>
         <CIcon icon="cil-shield-alt" /> Lock Account
-      </CDropdownItem>
-      <CDropdownItem> <CIcon icon="cil-lock-locked" /> Logout </CDropdownItem>
+      </CDropdownItem> -->
+      <CDropdownItem> <CLink href="/logout"><CIcon icon="cil-lock-locked" /> Logout </CLink></CDropdownItem>
     </CDropdownMenu>
   </CDropdown>
 </template>

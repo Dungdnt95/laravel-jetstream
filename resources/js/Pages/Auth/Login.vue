@@ -20,7 +20,7 @@ Object.keys(rules).forEach((rule) => {
     defineRule(rule, rules[rule])
   }
 })
-const onInvalidSubmit = ({ values, errors, results }) => {
+const onInvalidSubmit = ({ errors }) => {
   let firstInputError = Object.entries(errors)[0][0]
   let ele = $('[name="' + firstInputError + '"]')
   if (

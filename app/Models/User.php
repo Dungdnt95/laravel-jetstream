@@ -64,4 +64,18 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    protected $appends = [
+        'edit_url', 'destroy_url',
+    ];
+
+    public function getEditUrlAttribute()
+    {
+        return route('admin.user.edit', $this->id);
+    }
+
+    public function getDestroyUrlAttribute()
+    {
+        return route('admin.user.destroy', $this->id);
+    }
 }

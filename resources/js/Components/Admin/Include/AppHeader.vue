@@ -1,9 +1,9 @@
 <script setup>
-import AppBreadcrumb from '@/components/Admin/Include/AppBreadcrumb.vue'
-import AppHeaderDropdownAccnt from '@/components/Admin/Include/AppHeaderDropdownAccnt.vue'
+import AppBreadcrumb from '@/Components/Admin/Include/AppBreadcrumb.vue'
+import AppHeaderDropdownAccnt from '@/Components/Admin/Include/AppHeaderDropdownAccnt.vue'
 </script>
 <template>
-  <CHeader position="sticky" class="mb-4">
+  <CHeader position="sticky" class="mb-2">
     <CContainer fluid>
       <CHeaderToggler class="ps-1" @click="$store.commit('toggleSidebar')">
         <CIcon icon="cil-menu" size="lg" />
@@ -23,7 +23,7 @@ import AppHeaderDropdownAccnt from '@/components/Admin/Include/AppHeaderDropdown
         </CNavItem>
       </CHeaderNav> -->
       <CHeaderNav>
-        <CNavItem>
+        <!-- <CNavItem>
           <CNavLink href="#">
             <CIcon class="mx-2" icon="cil-bell" size="lg" />
           </CNavLink>
@@ -37,7 +37,7 @@ import AppHeaderDropdownAccnt from '@/components/Admin/Include/AppHeaderDropdown
           <CNavLink href="#">
             <CIcon class="mx-2" icon="cil-envelope-open" size="lg" />
           </CNavLink>
-        </CNavItem>
+        </CNavItem> -->
         <AppHeaderDropdownAccnt />
       </CHeaderNav>
     </CContainer>

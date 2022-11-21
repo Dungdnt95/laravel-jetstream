@@ -1,3 +1,7 @@
+
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3'
+</script>
 <template>
   <CSidebar
     position="fixed"
@@ -25,10 +29,22 @@
     </CSidebarBrand>
     <ul class="sidebar-nav">
       <li class="nav-item">
-        <a class="active nav-link" aria-current="page" href="#/dashboard">
-          <i class="nav-icon fa fa-home" aria-hidden="true"></i>
-          ホーム</a
+        <Link
+          href="/admin/dashboard"
+          class="nav-link"
+          :class="{ active: $page.props.dashboardActive }"
         >
+          <i class="nav-icon fa fa-home" aria-hidden="true"></i>
+          ホーム
+        </Link>
+        <Link
+          href="/admin/user"
+          class="nav-link"
+          :class="{ active: $page.props.userActive }"
+        >
+          <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+          ユーザー管理
+        </Link>
       </li>
     </ul>
     <CSidebarToggler
