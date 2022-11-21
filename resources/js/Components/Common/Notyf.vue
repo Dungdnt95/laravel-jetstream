@@ -8,7 +8,7 @@ import 'notyf/notyf.min.css'
 export default {
   mounted() {},
   created: function () {
-    if (this.data) {
+    if (this.data.length) {
       this.showNotification()
     }
   },
