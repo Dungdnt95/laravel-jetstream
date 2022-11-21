@@ -147,15 +147,6 @@ class UserController extends BaseController
             return redirect()->route('admin.user.index');
         }
         $this->setFlash(__('エラーが発生しました。'), 'error');
-
-        // return Inertia::render('Auth/ForgotPassword', parent::mergeSession([
-        //     'data' => [
-        //         'title' => 'パスワード再発行申請',
-        //         'request' => $request->all(),
-        //     ],
-        // ]));
-        // return $this->edit($id);
-
         return redirect()->route('admin.user.edit', $id);
     }
 
