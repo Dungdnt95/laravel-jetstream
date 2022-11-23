@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\User\TopController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\Lp\TopController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
@@ -42,6 +43,11 @@ Route::group([
 Route::group([
     'middleware' => ['user'],
     'as' => 'user.',
+], function () {
+    Route::resource('home', HomeController::class);
+});
+Route::group([
+    'middleware' => ['lp'],
 ], function () {
     Route::resource('top', TopController::class);
 });

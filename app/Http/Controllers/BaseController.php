@@ -188,7 +188,7 @@ class BaseController extends Controller
 
     public function mergeSession($data)
     {
-        $dataSession = '';
+        $dataSession = [];
         if (session()->get('Message.flash')) {
             $dataSession = session()->get('Message.flash')[0];
             session()->forget('Message.flash');

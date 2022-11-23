@@ -27,7 +27,9 @@
             integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
     @elseif(isset($isUser) && $isUser)
-        @vite(['resources/js/guest.js', "resources/js/Pages/{$page['component']}.vue"])
+        @vite(['resources/js/user.js', "resources/js/Pages/{$page['component']}.vue"])
+    @elseif(isset($isLp) && $isLp)
+        @vite(['resources/js/lp.js', "resources/js/Pages/{$page['component']}.vue"])
     @else
         @vite(['resources/js/guest.js', "resources/js/Pages/{$page['component']}.vue"])
     @endif

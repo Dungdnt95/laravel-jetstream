@@ -9,6 +9,7 @@ export default defineConfig({
         'resources/js/guest.js',
         'resources/js/admin.js',
         'resources/js/user.js',
+        'resources/js/lp.js',
       ],
       refresh: true,
     }),

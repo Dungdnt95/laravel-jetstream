@@ -5,11 +5,11 @@ $enable-ltr: true;
 $enable-rtl: true;
 
 // Import styles
-@import "@coreui/coreui/scss/coreui";
+@import '@coreui/coreui/scss/coreui';
 
 @import 'admin/base/reset';
 @import 'admin/base/loader';
 @import 'admin/base/base';
 @import 'admin/base/layout';
 
-@import "admin/custom";
+@import 'admin/custom';

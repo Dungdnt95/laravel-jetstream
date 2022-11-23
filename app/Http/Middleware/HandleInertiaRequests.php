@@ -36,7 +36,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $dataSession = '';
+        $dataSession = [];
         if (session()->get('Message.flash')) {
             $dataSession = session()->get('Message.flash')[0];
             session()->forget('Message.flash');
