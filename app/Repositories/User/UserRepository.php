@@ -28,8 +28,8 @@ class UserRepository implements UserInterface
         $userBuilder = $this->user;
         if (isset($request['free_word']) && $request['free_word'] != '') {
             $userBuilder = $userBuilder->where(function ($q) use ($request) {
-                $q->orWhere($this->escapeLikeSentence('name', $request['free_word']));
-                $q->orWhere($this->escapeLikeSentence('email', $request['free_word']));
+                $q->orWhere(CommonComponent::escapeLikeSentence('name', $request['free_word']));
+                $q->orWhere(CommonComponent::escapeLikeSentence('email', $request['free_word']));
             });
         }
         $users = $userBuilder->sortable(['updated_at' => 'desc'])->paginate($newSizeLimit);

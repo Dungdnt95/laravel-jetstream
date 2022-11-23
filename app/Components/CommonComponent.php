@@ -126,4 +126,36 @@ class CommonComponent
 
         return false;
     }
+
+    /**
+     * [escapeLikeSentence description]
+     * @param  [type]  $str    :search conditions
+     * @param  bool $before : add % before
+     * @param  bool $after  : add % after
+     * @return [type]          [description]
+     */
+    public static function escapeLikeSentence($column, $str, $before = true, $after = true)
+    {
+        $result = str_replace('\\', '[\]', CommonComponent::mbTrim($str)); // \ -> \\
+        $result = str_replace('%', '\%', $result); // % -> \%
+        $result = str_replace('_', '\_', $result); // _ -> \_
+
+        return [[$column, 'LIKE', (($before) ? '%' : '').$result.(($after) ? '%' : '')]];
+    }
+    public static function handleSearchQuery($str, $before = true, $after = true)
+    {
+        $result = str_replace('\\', '[\]', CommonComponent::mbTrim($str)); // \ -> \\
+        $result = str_replace('%', '\%', $result); // % -> \%
+        $result = str_replace('_', '\_', $result); // _ -> \_
+
+        return (($before) ? '%' : '').$result.(($after) ? '%' : '');
+    }
+
+    public static function mbTrim($string)
+    {
+        $whitespace = '[\s\0\x0b\p{Zs}\p{Zl}\p{Zp}]';
+        $ret = preg_replace(sprintf('/(^%s+|%s+$)/u', $whitespace, $whitespace), '', $string);
+
+        return $ret;
+    }
 }
