@@ -146,9 +146,6 @@ export default {
     data: {
       type: Object,
     },
-    sessionAlert: {
-      type: Object,
-    },
   },
   components: {
     VeeForm,
