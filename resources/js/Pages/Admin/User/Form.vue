@@ -158,7 +158,7 @@ configure({
                 </CCardBody>
                 <CCardFooter>
                   <div class="col-md-12 text-center btn-box">
-                    <CButton type="submit" class="btn btn-primary w-100px mr-5px">
+                    <CButton type="submit" color="info" class="w-100px mr-5px">
                       登録
                     </CButton>
                     <Link :href="data.listUrl" class="btn btn-secondary w-100px">

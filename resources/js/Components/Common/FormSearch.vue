@@ -16,11 +16,11 @@ import { Link } from '@inertiajs/inertia-vue3'
               id="free_word"
               class="form-control"
             />
-            <button type="submit" class="btn btn-primary w-100px">
+            <CButton type="submit" color="info" class="w-100px">
               <i class="fa fa-search"></i> &nbsp; 検索
-            </button>
+            </CButton>
           </div>
-          <Link :href="createUrl" class="btn btn-primary btn-action-create"
+          <Link :href="createUrl" class="btn btn-info btn-action-create"
             ><i class="fa fa-plus"></i>新規登録
           </Link>
         </form>
@@ -29,13 +29,10 @@ import { Link } from '@inertiajs/inertia-vue3'
   </CRow>
 </template>
 <script>
-
 export default {
   mounted() {},
-  created: function () {
-  },
+  created: function () {},
   props: ['listUrl', 'createUrl', 'request'],
-  methods: {
-  },
+  methods: {},
 }
 </script>

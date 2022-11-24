@@ -4,12 +4,13 @@
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  left: -60px;
   z-index: 999999;
   width: 2em;
   height: 2em;
   margin: auto;
   overflow: show;
+
   @include mq-down(md) {
     left: -3rem;
   }
@@ -34,7 +35,7 @@
   top: 33px;
   width: 13px;
   height: 13px;
-  background: rgb(104 117 245);
+  background: #2EA7E0;
   border-radius: 50%;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
@@ -58,6 +59,7 @@
   left: 56px;
   animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
   0% {
     transform: scale(0);
@@ -67,6 +69,7 @@
     transform: scale(1);
   }
 }
+
 @keyframes lds-ellipsis3 {
   0% {
     transform: scale(1);
@@ -76,6 +79,7 @@
     transform: scale(0);
   }
 }
+
 @keyframes lds-ellipsis2 {
   0% {
     transform: translate(0, 0);
@@ -85,4 +89,3 @@
     transform: translate(24px, 0);
   }
 }
-

@@ -1,0 +1,37 @@
+.sidebar {
+  --cui-sidebar-bg: #334258;
+  --cui-sidebar-toggler-bg: #334258;
+  --cui-sidebar-toggler-hover-bg: #334258;
+}
+
+.btn-info {
+  --cui-btn-color: #FFF;
+  --cui-btn-hover-color: #ececed;
+  --cui-btn-active-color: #ececed;
+  --cui-btn-bg: #54A0F4;
+  --cui-btn-border-color: #54A0F4;
+}
+
+.pagination {
+  --cui-pagination-active-bg: #54A0F4;
+  --cui-pagination-active-border-color: #54A0F4;
+}
+
+.dropdown-menu {
+  --cui-dropdown-link-active-bg: #54A0F4;
+}
+
+.page-link {
+  --cui-pagination-color: #000;
+  --cui-pagination-hover-color: #29282e;
+}
+
+.sort-link {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: #645e5e;
+    text-decoration: underline
+  }
+}

@@ -48,7 +48,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
                       <CTableDataCell>{{ user.email }}</CTableDataCell>
                       <CTableDataCell>
                         <CDropdown variant="btn-group">
-                          <CDropdownToggle color="primary"
+                          <CDropdownToggle color="info"
                             >操作選択</CDropdownToggle
                           >
                           <CDropdownMenu>
