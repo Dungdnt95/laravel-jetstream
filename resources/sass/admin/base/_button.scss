@@ -27,11 +27,22 @@
 }
 
 .sort-link {
-  color: black;
+  color: white;
   text-decoration: none;
+  font-size: 15px;
 
   &:hover {
-    color: #645e5e;
+    color: #e6e6e6;
     text-decoration: underline
   }
+}
+
+.table-info {
+  --cui-table-bg: #4C72BE
+}
+
+.table {
+  --cui-table-striped-bg: #CFD5E8;
+  --cui-table-bg: #E9EBF4;
+  --cui-table-striped-color: #000
 }

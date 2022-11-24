@@ -5,3 +5,7 @@
   will-change: auto;
   @include transition(padding .15s);
 }
+
+.container-lg {
+  max-width: 100%;
+}
