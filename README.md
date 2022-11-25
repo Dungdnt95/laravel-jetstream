@@ -55,8 +55,10 @@ $ phpmd app text musashi.xml
 $ php artisan storage:link
 
 # install php cs fixer
-$ create folder/tools/php-cs-fixer
+# create folder/tools/php-cs-fixer
 $ composer require --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
 # refactor code before commit
 $ tools/php-cs-fixer/vendor/bin/php-cs-fixer fix folder_code
+# refactor scss
+$ npx stylelint --fix resources/sass
 ```

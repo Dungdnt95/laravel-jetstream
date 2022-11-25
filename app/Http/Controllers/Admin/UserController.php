@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Components\SearchQueryComponent;
+use App\Enums\OperationType;
 use App\Enums\StatusCode;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\UserRequest;
@@ -82,6 +83,7 @@ class UserController extends BaseController
     public function store(UserRequest $request)
     {
         if ($this->user->store($request)) {
+            $this->saveOperationLog($request);
             $this->setFlash(__('代理店の新規作成が完了しました。'));
 
             return redirect()->route('admin.user.index');
@@ -142,11 +144,13 @@ class UserController extends BaseController
     public function update(UserRequest $request, $id)
     {
         if ($this->user->update($request, $id)) {
+            $this->saveOperationLog($request, OperationType::UPDATE);
             $this->setFlash(__('代理店の新規作成が完了しました。'));
 
             return redirect()->route('admin.user.index');
         }
         $this->setFlash(__('エラーが発生しました。'), 'error');
+
         return redirect()->route('admin.user.edit', $id);
     }
 
@@ -159,6 +163,8 @@ class UserController extends BaseController
     public function destroy($id)
     {
         if ($this->user->destroy($id)) {
+            $this->saveOperationLog($request, OperationType::DELETE);
+
             return response()->json([
                 'message' => '管理者アカウントの削除が完了しました。',
             ], StatusCode::OK);

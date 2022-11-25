@@ -136,15 +136,16 @@ class CommonComponent
      */
     public static function escapeLikeSentence($column, $str, $before = true, $after = true)
     {
-        $result = str_replace('\\', '[\]', CommonComponent::mbTrim($str)); // \ -> \\
+        $result = str_replace('\\', '[\]', self::mbTrim($str)); // \ -> \\
         $result = str_replace('%', '\%', $result); // % -> \%
         $result = str_replace('_', '\_', $result); // _ -> \_
 
         return [[$column, 'LIKE', (($before) ? '%' : '').$result.(($after) ? '%' : '')]];
     }
+
     public static function handleSearchQuery($str, $before = true, $after = true)
     {
-        $result = str_replace('\\', '[\]', CommonComponent::mbTrim($str)); // \ -> \\
+        $result = str_replace('\\', '[\]', self::mbTrim($str)); // \ -> \\
         $result = str_replace('%', '\%', $result); // % -> \%
         $result = str_replace('_', '\_', $result); // _ -> \_
 

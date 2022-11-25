@@ -149,7 +149,7 @@ class BaseController extends Controller
         $operationLog = new OperationLog();
         $operationLog->operation_log_datetime = Carbon::now();
         $operationLog->screen_name = $requestUri;
-        $operationLog->user_id = Auth::guard('admin')->user() === null ? null : Auth::guard('admin')->user()->id;
+        $operationLog->user_id = Auth::guard('admin')->check() ? Auth::guard('admin')->user()->id : null;
         $operationLog->operation_name = $request->route()->getActionMethod();
         $operationLog->operation_type = $operationType;
         $operationValue = $request->all();

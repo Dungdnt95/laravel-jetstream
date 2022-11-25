@@ -18,7 +18,7 @@ class HomeController extends BaseController
         return Inertia::render('User/Home/Index', [
             'data' => [
                 'title' => 'Top',
-            ]
+            ],
         ]);
     }
 

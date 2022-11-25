@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Repositories\LoginHistory\LoginHistoryInterface;
 use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,12 @@ class LoginController extends BaseController
 {
     private $user;
 
-    public function __construct(UserInterface $user)
+    private $loginHistory;
+
+    public function __construct(UserInterface $user, LoginHistoryInterface $loginHistory)
     {
         $this->user = $user;
+        $this->loginHistory = $loginHistory;
     }
 
     /**
@@ -58,7 +62,7 @@ class LoginController extends BaseController
     {
         $credentials = $request->only('email', 'password');
         if (Auth::guard('admin')->attempt($credentials, $request->remember_me ?? false)) {
-            if (! $this->user->saveLoginHistory()) {
+            if (! $this->user->saveLoginHistory() || ! $this->loginHistory->store($request)) {
                 Auth::guard('admin')->logout();
 
                 return redirect('/');

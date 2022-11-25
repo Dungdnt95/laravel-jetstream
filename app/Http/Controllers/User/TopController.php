@@ -18,7 +18,7 @@ class TopController extends BaseController
         return Inertia::render('User/Top/Index', [
             'data' => [
                 'title' => 'Top',
-            ]
+            ],
         ]);
     }
 
