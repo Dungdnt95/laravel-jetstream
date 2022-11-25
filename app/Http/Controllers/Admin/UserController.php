@@ -160,7 +160,7 @@ class UserController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         if ($this->user->destroy($id)) {
             $this->saveOperationLog($request, OperationType::DELETE);
