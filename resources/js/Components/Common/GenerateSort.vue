@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/inertia-vue3'
 </script>
 <template>
   <CTableHeaderCell v-for="(item, index) in data" :key="index">
-    <Link :href="item.link"
+    <Link class="sort-link" :href="item.link"
       >{{ item.name }}
       <i class="fa" :class="item.iconDirection"></i>
     </Link>

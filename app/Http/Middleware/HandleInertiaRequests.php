@@ -46,7 +46,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'sessionAlert' => $dataSession,
             'dashboardActive' => in_array($routeName, ['admin.dashboard.index']),
-            'userActive' => in_array($routeName, ['admin.user.index']),
+            'userActive' => in_array($routeName, ['admin.user.index', 'admin.user.create', 'admin.user.edit']),
         ]);
     }
 }
