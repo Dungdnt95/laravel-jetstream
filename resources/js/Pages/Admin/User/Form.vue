@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3'
 import AdminLayout from '@/Layouts/AdminLayout.vue'
+import { useForm } from '@inertiajs/inertia-vue3'
 import $ from 'jquery'
 import axios from 'axios'
 import {
@@ -193,7 +194,12 @@ export default {
   data() {
     return {
       csrfToken: Laravel.csrfToken,
-      model: this.data.isEdit ? this.data.user : {},
+      model: useForm(this.data.isEdit ? this.data.user : {
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+      }),
     }
   },
   mounted() {
@@ -211,7 +217,11 @@ export default {
   methods: {
     onSubmit() {
       $('.loading').removeClass('hidden');
-      this.$refs.formData.submit()
+      if (this.data.isEdit) {
+        this.model.patch(route('admin.user.update', this.data.user.id))
+      } else {
+        this.model.post(route('admin.user.store'))
+      }
     },
   },
 }

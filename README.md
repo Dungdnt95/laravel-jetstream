@@ -37,7 +37,7 @@ $ npm run dev or npm run build or yarn build
 $ npm run dev
 
 # login with account
-# xxx/admin/login admin@gmail.com/12345678
+# xxx/admin/login admin@gmail.com/1qazxsw2
 
 # generate interface and repository run command
 $ php artisan make:repository name
