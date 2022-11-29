@@ -78,11 +78,8 @@ configure({
               <form
                 method="POST"
                 @submit="handleSubmit($event, onSubmit)"
-                :action="data.urlAction"
                 ref="formData"
               >
-                <Field type="hidden" :value="csrfToken" name="_token" />
-                <Field type="hidden" v-if="data.isEdit" value="PUT" name="_method" />
                 <CCardHeader>
                   <CFormLabel>{{data.title}}</CFormLabel>
                 </CCardHeader>

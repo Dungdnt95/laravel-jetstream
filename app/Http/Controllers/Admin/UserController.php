@@ -38,7 +38,6 @@ class UserController extends BaseController
             'data' => [
                 'title' => 'ユーザー一覧',
                 'createUrl' => route('admin.user.create'),
-                'listUrl' => route('admin.user.index'),
                 'users' => $users->items(),
                 'sortLinks' => $this->sortLinks('admin.user.index', [
                     ['key' => 'id', 'name' => 'ID'],
@@ -67,7 +66,6 @@ class UserController extends BaseController
             'breadcrumbs' => $breadcrumbs,
             'data' => [
                 'title' => 'ユーザー追加',
-                'urlAction' => route('admin.user.store'),
                 'listUrl' => route('admin.user.index'),
                 'checkEmailUrl' => route('admin.user.checkEmail'),
             ],
@@ -125,7 +123,6 @@ class UserController extends BaseController
             'breadcrumbs' => $breadcrumbs,
             'data' => [
                 'title' => 'ユーザー編集',
-                'urlAction' => route('admin.user.update', $id),
                 'listUrl' => route('admin.user.index'),
                 'isEdit' => true,
                 'user' => $user,

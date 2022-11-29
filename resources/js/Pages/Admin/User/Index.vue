@@ -15,7 +15,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
             <CCardBody>
               <form-search
                 :request="data.request"
-                :listUrl="data.listUrl"
+                :routeName="'admin.user.index'"
                 :createUrl="data.createUrl"
               ></form-search>
               <template v-if="data.users.length">
