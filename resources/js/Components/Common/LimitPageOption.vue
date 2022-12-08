@@ -20,7 +20,13 @@
 </template>
 
 <script>
+import { useForm } from '@inertiajs/inertia-vue3'
 export default {
+  data() {
+    return {
+      model: useForm({}),
+    }
+  },
   props: {
     limitPageOption: {
       type: Array,
@@ -45,7 +51,8 @@ export default {
           search = search + '&limit_page=' + event.target.value
         }
       }
-      window.location = window.location.origin + pathname + search
+      this.model.get(window.location.origin + pathname + search)
+      // window.location = window.location.origin + pathname + search
     },
   },
 }

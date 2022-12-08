@@ -32,7 +32,7 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
-import Notyf from './components/common/notyf.vue'
+import Notyf from '@/Components/Common/Notyf.vue'
 app.component('notyf', Notyf)
 const appName = 'Musashi'
 
