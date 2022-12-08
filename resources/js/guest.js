@@ -33,6 +33,8 @@ import { InertiaProgress } from '@inertiajs/progress'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
 import Notyf from '@/Components/Common/Notyf.vue'
+import NProgress from 'nprogress'
+import { Inertia } from '@inertiajs/inertia'
 app.component('notyf', Notyf)
 const appName = 'Musashi'
 
@@ -51,4 +53,6 @@ createInertiaApp({
   },
 })
 
-InertiaProgress.init({ color: '#4B5563' })
+InertiaProgress.init({ color: '#4C72BE' })
+Inertia.on('start', () => NProgress.start())
+Inertia.on('finish', () => NProgress.done())

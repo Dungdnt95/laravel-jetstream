@@ -20,6 +20,7 @@
             JSON_UNESCAPED_UNICODE,
         ) !!};
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
     @routes
     @if (isset($isAdmin) && $isAdmin)
         @vite(['resources/js/admin.js', "resources/js/Pages/{$page['component']}.vue"])
