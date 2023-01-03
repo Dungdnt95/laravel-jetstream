@@ -4,13 +4,6 @@
     position="fixed"
     :unfoldable="sidebarUnfoldable"
     :visible="sidebarVisible"
-    @visible-change="
-      (event) =>
-        $store.commit({
-          type: 'updateSidebarVisible',
-          value: event,
-        })
-    "
   >
     <CSidebarBrand>
       <CIcon
