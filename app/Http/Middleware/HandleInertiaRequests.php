@@ -47,6 +47,7 @@ class HandleInertiaRequests extends Middleware
             'sessionAlert' => $dataSession,
             'dashboardActive' => in_array($routeName, ['admin.dashboard.index']),
             'userActive' => in_array($routeName, ['admin.user.index', 'admin.user.create', 'admin.user.edit']),
+            'productActive' => in_array($routeName, ['admin.product.index', 'admin.product.create', 'admin.product.edit']),
         ]);
     }
 }

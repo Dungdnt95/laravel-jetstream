@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Lp\TopController;
@@ -37,7 +38,9 @@ Route::group([
 ], function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('user', UserController::class);
+    Route::resource('product', ProductController::class);
     Route::post('check-email', [UserController::class, 'checkEmail'])->name('user.checkEmail');
+    Route::post('/product/{product}/update-status', [ProductController::class, 'updateStatus'])->name('product.updateStatus');
 });
 
 Route::group([

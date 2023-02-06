@@ -35,6 +35,14 @@
           <i class="nav-icon fa fa-users" aria-hidden="true"></i>
           ユーザー管理
         </Link>
+        <Link
+          href="/admin/product"
+          class="nav-link"
+          :class="{ active: $page.props.productActive }"
+        >
+          <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+         Product
+        </Link>
       </li>
     </ul>
     <CSidebarToggler
